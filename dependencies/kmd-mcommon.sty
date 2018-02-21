@@ -1,0 +1,488 @@
+% 
+% kmd-mcommon.sty: master's thesis common style in KMD
+%
+%                                             Ver. 1.1   Dec. 17, 2009
+%
+% This file is called by kmd-mthesis.sty or kmd-jmthesis.sty.
+%
+%
+% Section Header
+%       from jarticle.sty, however, ``.'' was appended to right after
+%       section numbers. 
+%
+%\typeout{section}
+\def\@sect#1#2#3#4#5#6[#7]#8{\ifnum #2>\c@secnumdepth
+     \def\@svsec{}\else 
+     \refstepcounter{#1}\edef\@svsec{\csname the#1\endcsname
+      \ifnum #2=1.\fi\hskip 0.6em }\fi
+     \@tempskipa #5\relax
+      \ifdim \@tempskipa>\z@ 
+        \begingroup #6\relax
+          \@hangfrom{\hskip #3\relax\@svsec}{\interlinepenalty \@M #8\par}%
+        \endgroup
+       \csname #1mark\endcsname{#7}\addcontentsline
+         {toc}{#1}{\ifnum #2>\c@secnumdepth \else
+                      \protect\numberline{\csname the#1\endcsname
+                       \ifnum #2=1.\fi}\fi
+                    #7}\else
+        \def\@svsechd{#6\hskip #3\@svsec #8\csname #1mark\endcsname
+                      {#7}\addcontentsline
+                           {toc}{#1}{\ifnum #2>\c@secnumdepth \else
+                             \protect\numberline{\csname the#1\endcsname
+                              \ifnum #2=1.\fi}\fi
+                       #7}}\fi
+     \@xsect{#5}}
+%
+% today
+%
+%\typeout{jpntoday}
+% \newif\if西暦\let\if西暦=\iffalse \def\西暦{\let\if西暦=\iftrue}
+% \def\jpntoday{{\if西暦\count0=\year\else%
+% \count0=\year\advance\count0 -1988 平成\,\fi%
+% \number\count0\,年\hspace{.5em}\nobreak%
+% \number\month\,月\hspace{.5em}\nobreak\number\day\,日}}
+% %
+% \newcount\nendo
+% \def\nendostr{{\ifnum\month<4\nendo=\year\advance\nendo -1989\else%
+% \nendo=\year\advance\nendo -1988\fi%
+% 平成{\ifnum\nendo=1{元}\else\number\nendo\fi}年度}}
+%
+%\typeout{engtoday}
+\def\engtoday{
+\ifcase\month\or
+ January\or February\or March\or April\or May\or June\or
+ July\or August\or September\or October\or November\or December\fi
+ \space\number\day, \number\year}
+%
+%\typeout{current time}
+\newcount\curmin \newcount\hour \newcount\onehour \newcount\curhour
+\onehour=60
+\hour=\time
+\divide\hour by\onehour
+\curhour=\hour
+\multiply\hour by-\onehour
+\curmin=\time
+\advance\curmin by\hour
+\def\curtime{{\number\curhour 時\number\curmin 分}}
+\def\ecurtime{{\number\curhour:\number\curmin}}
+%
+% Language
+%
+\newcommand{\lang}[1]{}
+%
+% title page items
+%
+%\typeout{commands...}
+\def\studentnumberstr{xxxxxxx}
+\newcommand{\studentnumber}[1]{
+        \def\studentnumberstr{#1}
+}
+%
+\newcommand{\doctitle}[1]{
+        \def\doctitlestr{#1}
+        \def\mastersthesis{1}
+        \def\mastersreport{2}
+        \def\jdoctitle{\ifcase\doctitlestr\or{修士論文}\or{課題研究}\fi}
+        \def\jdoctype{\ifcase\doctitlestr\or{論文}\or{報告書}\fi}
+        \def\jdocname{\ifcase\doctitlestr\or{修士論文}\or{課題研究の報告書}\fi}
+        \def\edoctitle{\ifcase\doctitlestr\or{Doctoral Dissertation}\or{Doctoral Dissertation}\fi}
+        \def\edoctitleacronym{\ifcase\doctitlestr\or{MT}\or{MR}\fi}
+}
+%
+\def\titlestr{Title}
+\renewcommand{\title}[1]{
+        \def\titlestr{#1}
+}
+%
+\newcommand{\ptitle}[1]{}
+%
+\def\etitlestr{Title}
+\newcommand{\etitle}[1]{
+        \def\etitlestr{#1}
+}
+%
+\newcommand{\eptitle}[1]{}
+%
+%
+\def\authorstr{I am the author}
+\renewcommand{\author}[1]{
+        \def\authorstr{#1}
+}
+%
+\newcommand{\pauthor}[1]{}
+%
+\def\eauthorstr{I am the author}
+\newcommand{\eauthor}[1]{
+        \def\eauthorstr{#1}
+}
+%
+\newcommand{\epauthor}[1]{}
+%
+%
+\def\syearstr{}
+\newcommand{\syear}[1]{
+ \def\syearstr{#1}
+}
+
+\def\heiseiyearstr{}
+\newcommand{\heiseiyear}[1]{
+ \def\heiseiyearstr{#1}
+}
+
+%
+\def\smonthstr{}
+\newcommand{\smonth}[1]{
+ \def\smonthstr{#1}
+}
+%
+\def\sdaystr{}
+\newcommand{\sday}[1]{
+ \def\sdaystr{#1}
+}
+%
+% \def\datestr{\syearstr\,年\hspace{.3em}\nobreak%
+% \smonthstr\,月\hspace{.3em}\nobreak\sdaystr\,日}
+
+
+ %タイトルにつく年度の定義
+ %日本語
+\def\datestr{\hspace{0.3cm}\syearstr\,年度}
+\def\heiseidatestr{（平成\heiseiyearstr\,年度）}
+%英語
+\def\edatestr{Academic Year \syearstr\ }
+%\ifcase\smonthstr\or
+ %January\or February\or March\or April\or May\or June\or
+ %July\or August\or September\or October\or November\or December\fi
+ %\space\sdaystr, \syearstr}
+%
+%
+
+%
+\newcommand{\division}[1]{}
+%
+% committee members' page items
+%
+\newcommand{\major}[1]{
+        \def\majorstr{#1}
+        \def\mediadesign{1}
+        \def\jmajorstr{\ifcase\majorstr\or{メディアデザイン学}\fi}
+        \def\emajorstr{\ifcase\majorstr\or{Media Design}\fi}
+}
+%
+\def\firstcomember{教授}
+\def\secondcomember{教授}
+\def\thirdcomember{教授}
+\def\fourthcomember{教授}
+\def\fifthcomember{教授}
+%\def\sixthcomember{教授}
+%% \newcommand{\comembers}[4]{
+%%         \def\firstcomember{#1}
+%%         \def\secondcomember{#2}
+%%         \def\thirdcomember{#3}
+%%         \def\fourthcomember{#4}
+%% }
+
+\def\firstchmember{教授}
+\def\secondchmember{教授}
+
+\newcommand{\comembers}[8]{
+        \def\firstcomember{#1}
+        \def\firstposition{#2}
+        \def\secondcomember{#3}
+        \def\secondposition{#4}
+        \def\thirdcomember{#5}
+        \def\thirdposition{#6}
+        \def\fourthcomember{#7}
+        \def\fourthposition{#8}
+}
+
+\newcommand{\chmembers}[4]{
+        \def\firstchmember{#1}
+        \def\firstchposition{#2}
+        \def\secondchmember{#3}
+        \def\secondchposition{#4}
+}
+
+%
+\newcommand{\addcomembers}[2]{
+        \def\fifthcomember{#1}
+        \def\fifthposition{#2}
+%        \def\sixthcomember{#3}
+%        \def\sixthposition{#4}
+}
+%
+\def\efirstcomember{Professor}
+\def\esecondcomember{Professor}
+\def\ethirdcomember{Professor}
+\def\efourthcomember{Professor}
+\def\efifthcomember{Professor}
+%\def\esixthcomember{Professor}
+%% \newcommand{\ecomembers}[4]{
+%%         \def\efirstcomember{#1}
+%%         \def\esecondcomember{#2}
+%%         \def\ethirdcomember{#3}
+%%         \def\efourthcomember{#4}
+%% }
+
+\def\efirstchmember{Professor}
+\def\esecondchmember{Professor}
+
+\newcommand{\ecomembers}[8]{
+        \def\efirstcomember{#1}
+        \def\efirstposition{#2}
+        \def\esecondcomember{#3}
+        \def\esecondposition{#4}
+        \def\ethirdcomember{#5}
+        \def\ethirdposition{#6}
+        \def\efourthcomember{#7}
+        \def\efourthposition{#8}
+}
+
+\newcommand{\echmembers}[4]{
+        \def\efirstchmember{#1}
+        \def\efirstchposition{#2}
+        \def\esecondchmember{#3}
+        \def\esecondchposition{#4}
+}
+
+%
+\newcommand{\eaddcomembers}[2] {
+        \def\efifthcomember{#1}
+        \def\efifthposition{#2}
+%        \def\esixthcomember{#3}
+%        \def\esixthposition{#4}
+}
+%
+% abstract page items
+%
+
+
+
+\def\categorystr{keyword1, keyword2}
+\newcommand{\category}[1]{
+        \def\categorystr{#1}
+}
+%
+\newcommand{\pcategory}[1]{}
+%
+
+\def\categorystr{keyword1, keyword2}
+\newcommand{\ecategory}[1]{
+        \def\ecategorystr{#1}
+}
+%
+\newcommand{\pecategory}[1]{}
+%
+
+%\typeout{keywords}
+\def\keywordsstr{keyword1, keyword2}
+\newcommand{\keywords}[1]{
+        \def\keywordsstr{#1}
+}
+%
+\newcommand{\pkeywords}[1]{}
+%
+%\typeout{ekeywords}
+\def\ekeywordsstr{keyword1, keyword2}
+\newcommand{\ekeywords}[1]{
+        \def\ekeywordsstr{#1}
+}
+%
+\newcommand{\epkeywords}[1]{}
+%
+%\typeout{abstract}
+\def\abstracttext{This is the abstract.}
+\renewcommand{\abstract}[1]{
+        \def\abstracttext{#1}
+}
+%
+\newcommand{\pabstract}[1]{}
+%
+\def\eabstracttext{This is the abstract.}
+\newcommand{\eabstract}[1]{
+        \def\eabstracttext{#1}
+}
+%
+\newcommand{\epabstract}[1]{}
+%
+\newcommand{\jabstractpage}{
+%         \begin{center}
+%                 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+%                 \Large\bf \titlestr\footnote[1]
+%                         {慶應義塾大学大学院 メディアデザイン研究科
+%                         { } \jdoctitle,
+%                         KMD-\studentnumberstr,
+%                         \datestr.}
+%                 \renewcommand{\thefootnote}{\arabic{footnote}}
+%         \end{center}
+%        \vspace*{1mm}
+%         \begin{center}
+%                 \large\authorstr
+%         \end{center}
+%         \vspace*{10mm}
+
+	\begin{center}
+	 \large\jdoctitle\datestr\heiseidatestr
+	\end{center}
+		\begin{center}
+		\Large\titlestr
+		\end{center}
+		\vspace*{1mm}
+	        \begin{center}
+                {\large カテゴリー：\categorystr } 
+        \end{center}
+\vspace*{1mm}
+        \begin{center}
+        {\large 論文要旨}
+        \end{center}
+        \vspace*{1mm}
+        \par
+        \abstracttext
+        \vspace*{2mm}
+        \begin{flushleft}
+                {\large キーワード：}
+        \end{flushleft}
+        \keywordsstr
+        \vspace*{3mm}
+        \begin{flushright}
+        {\large 慶應義塾大学大学院 メディアデザイン研究科}
+        \end{flushright}
+        \begin{flushright}
+        	\large\authorstr
+        \end{flushright}
+}
+%
+\newcommand{\eabstractpage}{
+         \begin{center}
+                 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+                 \large \etitlestr %\footnote[1]
+        %                 {{\edoctitle}, 
+        %                 Graduate School of Media \mbox{Design,}
+        %                Keio University,
+        %                 {KMD-\studentnumberstr},
+        %                 {\edatestr}.}
+        %         \renewcommand{\thefootnote}{\arabic{footnote}}
+         \end{center}
+        % \vspace*{1mm}
+        % \begin{center}
+        %         \large\eauthorstr
+        % \end{center}
+        % \vspace*{10mm}
+
+%\begin{center}
+%{\large Abstract of  \edoctitle\, of \edatestr\,}
+%\end{center}
+%	\begin{center}
+	%	\Large\etitlestr\,
+% 		\footnote[1]
+%                         {{\edoctitle}, 
+%                         Graduate School of Media \mbox{Design,}
+%                         Keio University,
+%                         {KMD-\studentnumberstr},
+%                         {\edatestr}.}
+%		\end{center}
+	  \begin{center}
+               {\small Category: \ecategorystr }
+        \end{center}
+        \begin{center}
+        {\textbf{\large Abstract}}
+        \end{center}
+        \vspace*{0.5mm}
+        \par
+        \eabstracttext
+        \vspace*{2mm}
+               \begin{flushleft}
+                {\large Keywords:}
+        \end{flushleft}
+        \ekeywordsstr
+       \vspace*{3mm}
+        \begin{flushright}
+        {\large Keio University Graduate School of Media Design}
+        \end{flushright}
+        \begin{flushright}
+        	\large\eauthorstr
+        \end{flushright}
+}
+%
+% \typeout{toc}
+\newcommand{\toc}{
+        \if\isfinal\yes
+                \newpage
+                \small
+  				\setlength\itemsep{0em}
+                \tableofcontents
+        \fi
+}
+
+%moved from previous .tex (20120530 by Uriu)
+
+\def\Hline{\noalign{\hrule height 0.4mm}}
+\newlength{\tmplen}
+\newlength{\tmplena}
+\makeatletter
+\newcounter{procedurectr}
+\newenvironment{procedure}
+{\vspace{6pt}%
+  \list{}%
+  {\topsep15pt \labelwidth2em%
+    \leftmargin3em \rightmargin\leftmargin%
+    \itemindent1em \listparindent\itemindent%
+    \usecounter{procedurectr}%
+    \def\makelabel{\procedurelabel}}}
+{\endlist}
+\newcommand*\procedurelabel[1]{%
+  \parbox[b]{\labelwidth}{\makebox[0pt][l]{\normalfont\bfseries \romannumeral\the\@itemdepth {\stepcounter{procedurectr}\@arabic\c@procedurectr.} #1}\\}%
+  \hfill\relax}
+\renewenvironment{description}
+{\vspace{6pt}\list{}{\topsep15pt \labelwidth2em%
+    \leftmargin3em \rightmargin\leftmargin%
+    \itemindent1em \listparindent\itemindent%
+    \let\makelabel\descriptionlabel}}
+{\endlist}
+\newenvironment{terminology}
+               {\vspace{6pt}\list{}{\topsep15pt\itemsep15pt\labelwidth2pt%
+                \itemindent1pt \listparindent\itemindent%
+                        \let\makelabel\descriptionlabel}}
+               {\endlist}
+\renewcommand*\descriptionlabel[1]{%
+  \parbox[b]{\labelwidth}{\makebox[0pt][l]{\normalfont\bfseries #1}\\}%
+  \hfill\relax}
+
+%%% ここから
+% \newdimen\samplemidashi
+% \newdimen\midashi
+% \def\@stretchlabel#1#2{%
+%   \setbox\@tempboxa\hbox{\vrule width#1}\samplemidashi\wd\@tempboxa\relax%
+%   \setbox\@tempboxa\hbox{#2}\midashi\wd\@tempboxa\relax%
+%   \ifdim\midashi>\samplemidashi{#2}%
+%   \else
+%     \hbox to #1{%
+%       \kanjiskip=0pt plus 1fill minus 1fill
+%       \xkanjiskip=\kanjiskip
+%       \spaceskip=\kanjiskip
+%       \xspaceskip=\kanjiskip
+%     #2}%
+%   \fi%
+% }
+% \def\@makechapterhead#1{\hbox{}%
+%   \vskip2\Cvs
+%   {\parindent\z@
+%   \raggedright
+%   \reset@font\bfseries\gtfamily
+%   \leavevmode
+%   \ifnum \c@secnumdepth >\m@ne
+%      \setbox\z@\hbox{\LARGE\@chapapp\thechapter\@chappos\hfill}%
+%      \unhbox\z@\break
+%      \vtop{\huge\vspace{-6pt}\hspace*{1em}\@stretchlabel{6em}{#1}}%
+%   \else
+%      #1\relax
+%   \fi}\nobreak\vskip3\Cvs}
+% \def\@makeschapterhead#1{\hbox{}%
+%   \vskip2\Cvs
+%   {\parindent\z@
+%   \raggedright
+%   \reset@font\huge\bfseries\gtfamily
+%   \leavevmode
+%   \setlength\@tempdima{\linewidth}%
+%   \vtop{\hsize\@tempdima\@stretchlabel{6em}{#1}}}\vskip3\Cvs}
+%% ここまで

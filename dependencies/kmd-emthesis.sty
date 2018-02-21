@@ -1,0 +1,235 @@
+% 
+% kmd-mthesis.sty: master's thesis style in KMD
+%
+%                                             Ver. 1.1   Dec. 17, 2009
+% 
+% This file must be included before \begin{document}. The Document
+% style must be 'article', so you should include this macro as follows:
+%    \documentclass[12pt]{article}
+%	 \usepackage{kmd-mthesis}
+%
+\typeout{Doctoral Dissertation for Keio University Graduate School of Media Design}
+%
+% input the common style file
+%
+\input{dependencies/kmd-mcommon.sty}
+
+%
+% Figure and Table Caption
+%       from article.sty, however, ``.'' was used instead of ``:'' 
+%       to separate figure/table numbers and captions.
+%
+\long\def\@makecaption#1#2{
+ \vskip 10pt 
+ \setbox\@tempboxa\hbox{#1. #2}
+ \ifdim \wd\@tempboxa >\hsize #1. #2\par \else \hbox
+to\hsize{\hfil\box\@tempboxa\hfil} 
+ \fi}
+%
+% References (bug fix article.sty)
+%
+%\typeout{reference}
+\def\thebibliography#1{\chapter*{References\@mkboth
+ {REFERENCES}{REFERENCES}\addcontentsline{toc}{chapter}{References}}\list
+ {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+ \advance\leftmargin\labelsep
+ \usecounter{enumi}}
+ \def\newblock{\hskip .11em plus .33em minus .07em}
+ \sloppy\clubpenalty4000\widowpenalty4000
+ \sfcode`\.=1000\relax}
+\let\endthebibliography=\endlist
+%
+% page layout
+%
+
+\topmargin=0cm %0cm
+\textheight=21.5cm % 20.5cm
+\textwidth=12.6cm %12.6cm
+\oddsidemargin=1.5cm %1.5cm
+\evensidemargin=0cm %-3.8cm
+
+
+%\topmargin=0cm
+%\textheight=20.5cm
+%\textwidth=14.6cm
+%\oddsidemargin=0.9cm
+%\evensidemargin=-3.8cm
+\renewcommand{\baselinestretch}{1.4}
+%
+% pagestyle
+%
+%\typeout{pagestyle}
+\def\yes{1}
+%
+% for final
+%
+\def\ps@final{
+\def\isfinal{1}
+\def\@evenhead{}%
+\def\@oddhead{}%
+\def\@oddfoot{\hfill\thepage\hfill}%
+\def\@evenfoot{\hfill\thepage\hfill}%
+}
+%
+% drafts
+%
+\def\ps@draft{
+\def\isfinal{0}
+\def\draftstr{{\engtoday. \ecurtime, \eauthorstr}}
+\def\draftfoot{%
+        {{\sf \draftstr}\hfill{\sf \thepage}}%
+}
+\def\@evenhead{}%
+\def\@oddhead{}%
+\def\@oddfoot{{\draftfoot}}%
+\def\@evenfoot{{\draftfoot}}%
+}
+%
+% title page
+%
+%\typeout{titlepage}
+\renewcommand{\titlepage}{
+        \newpage
+        \thispagestyle{empty}
+        \if\isfinal\yes
+%                {\raggedleft
+%                    \normalsize KMD-\studentnumberstr \\
+%                }
+                \vspace*{5mm}
+                \begin{center}
+                        \LARGE\edoctitle\, \\ \edatestr\
+                \end{center}
+                \vspace*{25mm}
+                \begin{center}
+                        \LARGE\etitlestr
+                \end{center}
+                \vspace*{25mm}
+                       \begin{center}
+                        {\Large Keio University Graduate School of Media Design}
+                \end{center}
+
+                \begin{center}
+                        \LARGE\eauthorstr
+                \end{center}
+                       \vspace*{\fill}
+        \else
+%                \vspace*{\fill}
+%                \begin{center}
+%                        {\Huge\bf DRAFT}
+%                \end{center}
+%                \vspace*{1cm}
+%                \begin{center}
+%                        \Large\bf\etitlestr
+%                \end{center}
+%                \vspace*{1cm}
+%                \begin{center}
+%                        {\Large \eauthorstr}
+%                \end{center}
+%                \vspace*{1cm}
+%                \begin{center}
+%                        {\Large\bf \engtoday}
+%                \end{center}
+%                \begin{center}
+%                        {\Large\bf \ecurtime}
+%                \end{center}
+%                \vspace*{\fill}
+        \fi
+}
+%
+% committee members page
+%
+\newcommand{\comemberspage}{
+        \newpage
+        \thispagestyle{empty}
+        \begin{center}
+        \large \etitlestr
+        \small
+        \\
+        \bigskip
+        by
+        \\
+        \eauthorstr
+        \\
+        Masters in Media Design, Keio University. Japan, 2015
+        \\
+        B.Sc. CS Damascus University. Syria, 2010
+        \end{center}
+        \vspace*{\fill}
+        \begin{center}
+        A \edoctitle\\
+        submitted to
+        Keio University Graduate School of Media Design\\
+        in partial fulfillment of the requirements for the degree of\\
+		Ph.D. in Media Design
+        \bigskip
+
+
+        \bigskip\medskip
+
+        \begin{tabular}{p{0.5in}ll}
+      %  \multicolumn{2}{l}{Thesis Committee:} & \\
+       %        & \efirstchmember & \efirstchposition \\
+         %      & \esecondchmember & \esecondchposition \\
+        \multicolumn{2}{l}{Thesis Committee:} & \\
+               & \efirstcomember & \efirstposition \\
+               & \esecondcomember & \esecondposition \\
+               & \ethirdcomember & \ethirdposition \\
+               & \efourthcomember & \efourthposition \\
+               & \efifthcomember & \efifthposition \\
+%               & \esixthcomember & \esixthposition
+        \end{tabular}
+        \end{center}
+}
+%
+% abstract pages
+%
+\newcommand{\firstabstract}{
+        \newpage
+        \pagenumbering{roman}
+        \eabstractpage
+        \addcontentsline{toc}{chapter}{Abstract\numberline{}}
+}
+\newcommand{\secondabstract}{
+        \newpage
+        \jabstractpage
+}
+%
+%typeout{acknowledgements}
+\newcommand{\acknowledgements}{
+        \newpage
+        \chapter*{Acknowledgements}%\addcontentsline{toc}{chapter}{Acknowledgements}
+        %\addcontentsline{toc}{chapter}{Acknowledgments\numberline{}}
+}
+%typeout{yet another reference}
+\newcommand{\reference}{
+        \newpage
+        \chapter*{Bibliography\addcontentsline{toc}{chapter}{Bibliography}}
+}
+%typeout{appendix}
+%\renewcommand{\appendix}{
+%       \newpage
+%       \section*{Appendix\addcontentsline{toc}{section}{Appendix}}
+%}
+\renewcommand{\appendix}{\par
+        \setcounter{section}{0}
+        \setcounter{subsection}{0}
+        \def\thesection{\Alph{section}}
+        \newpage
+        \chapter*{Appendix\addcontentsline{toc}{chapter}{Appendix}}
+}
+%\typeout{done}
+
+%%% jreportによって上書きされた見出し系を元に戻す
+% \renewcommand{\prechaptername}{}
+% \renewcommand{\postchaptername}{.}
+% \renewcommand{\contentsname}{Table of Contents}
+% \renewcommand{\listfigurename}{List of Figures}
+% \renewcommand{\listtablename}{List of Tables}
+% %\renewcommand{\bibname}{Bibliography}
+% \renewcommand{\indexname}{Index}
+% \renewcommand{\figurename}{Figure}
+% \renewcommand{\tablename}{Table}
+% %\renewcommand{\partname}{Part}
+% %\renewcommand{\chaptername}{Chapter}
+% %\renewcommand{\appendixname}{Appendix}
+% \renewcommand{\abstractname}{Abstract}

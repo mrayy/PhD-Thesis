@@ -1,0 +1,236 @@
+%%This is the KMD un-official thesis template (Engineering Format for English Writer).
+
+\documentclass[12pt,a4paper]{report} %,draft
+
+%this contains the packages used in this document
+\input{x-packages.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatother
+%
+%
+% Page Style Settings
+\pagestyle{final}       % Final Draft
+\pagestyle{fancy}
+
+%\chead{}
+\fancyhf{}
+%\fancyhead[C]{}
+\fancyhead[L]{\footnotesize \rightmark}
+\fancyfoot[C]{\thepage}
+%\fancyfoot[R]{}
+%headers
+%\lhead{}
+
+%\pagestyle{draft}      % Drafts
+%
+% Language Settings
+%\lang{Japanese} % Japanese
+\lang{English} % English
+%
+% Student ID number
+\studentnumber{81553062}
+%
+% Choosing Masters Thesis or Report
+\doctitle{\mastersthesis}       % Masters Thesis
+%\doctitle{\mastersreport}      % Report
+%
+% What Degree to obtain
+\major{\mediadesign}    % Degree of Media Design
+%
+% Title (in LaTeX)
+%\etitle{Multi Scale Presence: Expanding Human Perceptual Awareness in Telepresence}
+
+\etitle{ \ProposalSubtitle}
+
+%
+% Title (in plain text)
+%   No need to set if the same as  (in LaTeX)
+% \eptitle{Practice of Design Thinking Workshop to Develop ``Media Innovator'' Leading Creative Society}
+%
+%
+%Author's Name (in LaTeX)
+\eauthor{MHD Yamen Saraiji}
+%
+% Author's Name (in plain text)
+%
+%   No need to set if the same as in (in LaTeX)
+% \epauthor{Masa Inakage}
+%
+%
+% Academic Year
+\syear{2017}
+%\heiseiyear{24}
+%\smonth{2}
+%\sday{7}
+%
+%
+% Advisors
+%\echmembers{Professor Hideki Sunahara}{(Supervisor)}
+%          {Professor Akira Kato}{(Co-supervisor)}
+%If 5
+% Supervisor, Co-supervisor, and Member must be specified.
+%\ecomembers{Professor Shunsuke Uemura}{(Supervisor)}
+%          {Professor Minoru Ito}{(Co-supervisor)}
+%          {Associate Professor Masatoshi Yoshikawa}{(Member, Nagoya University)}
+%          {Associate Professor xxxxxx xxxxxx}{(Member)}
+%\eaddcomembers{Associate Professor oooooo oooooo}{(Member)}
+%
+% If 4
+%\ecomembers{Professor Hideki Sunahara}{(Supervisor)}
+%          {Professor Akira Kato}{(Co-supervisor)}
+%          {Professor Nobuo Kawaguchi}{(Member, Nagoya University)}
+%          {Associate Professor xxxxxx xxxxxx}{(Member)}
+%
+% If 3
+\ecomembers{Associate Professor Kouta Minamizawa}{(Supervisor)}
+         {Professor Hideki Sunahara}{(Member)}
+          {Professor Keiko Okawa}{(Member)}
+          {Professor Naohito Okude}{(Member)}
+\eaddcomembers {Professor Emeritus Susumu Tachi}{(Member)}
+% If 2
+% \ecomembers{Professor Hideki Sunahara}{(Supervisor)}
+%           {Professor Akira Kato}{(Co-supervisor)}
+%
+% 5 or 6 Keywords (in LaTeX)
+%
+\ekeywords{ Human Augmentation, Phenomenology, Embodiment, Perception \& Awareness, Body Schema Mapping, Meta-Modeling}
+%
+% 5 or 6 Keywords (in plain text)
+%   No need to set if the same as in (in LaTeX)
+% \epkeywords{Design Thinking, Creative Society, Workshop, Innovation, Education}
+
+%Choose one submission category from [Design, Science / Engineering, Social Science / Humanities, Action Research]
+\ecategory{Science / Engineering}
+%Choose one submission category from [Design, Science / Engineering, Social Science / Humanities, Action Research] (in plain text)
+% \ecategory{Science / Engineering}
+
+
+
+\begin{comment}
+
+The thesis should highlight the following keypoints:
+- Perceptual Expansion and Body Functions augmentation 
+- Benefits of digital body vs physical body
+- What is multi-scale presence
+- High dimensions self representation
+- Ubiquitous Perception
+
+\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%Abstract%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{0-Abstract.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%% document starts here %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+%
+%
+\titlepage
+\comemberspage
+\firstabstract
+%\secondabstract
+%
+%Table of Contents
+\renewcommand{\contentsname}{Table of Contents}
+\toc
+\newpage
+% \phantomsection
+\cleardoublepage
+%\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\cleardoublepage
+%\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+%
+
+\input{0-Ack.tex}
+
+\newpage
+\pagenumbering{arabic}
+%%%%%Chapters
+%\cleartoleftpage
+\epigraphhead[400]{
+\centering\textit{
+``But O alas, so long, so far\\
+Our bodies why do they forbear?\\
+They’re ours, though they are not we, we are\\
+The intelligencies, they the sphere''}\par\textsc{John Donne, The Ecstasy}}
+
+\part{Foundations \& Philosophy}
+\label{pt:I}
+\input{1-Intro.tex}   %20 pages
+\input{2-Related.tex} % 8 pages --> 10~12 pages
+
+\pagebreak
+%\cleartoleftpage
+\epigraphhead[400]{
+\centering\textit{
+``Our Bodies are the Medium of Interaction, \\the Bridge of our Minds''}}
+\part{Embodied-Driven Design}
+\label{pt:II}
+\input{3-Concept.tex} 
+\input{4-System.tex}  
+%\pagebreak
+%\cleartoleftpage
+%\epigraphhead[400]{
+%\centering\textit{}}
+%\part{Applications}
+%\label{pt:III}
+\input{5-Evaluation.tex} %22 pages
+%\input{6-Usability.tex} %8 pages --> 15 pages
+
+\pagebreak
+%\cleartoleftpage
+\epigraphhead[400]{
+\centering\textit{}}
+\part{Conclusion \& Future Direction}
+\label{pt:IV}
+\input{6-Conclusion.tex}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%Reference%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\newpage
+%\reference
+%\nocite{*} %Use if you want to list everything listed in bibtex, if not comment it out
+%%%%%%%%%%%%%%%%%%%%%%
+%Style of Bibliography
+%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{abbrv}
+
+\pagebreak
+\epigraphhead[400]{
+\centering\textit{``Research is to see what everybody else has seen, \\and to think what nobody else has thought.''}\par\textsc{Albert Szent-Gyorgyi}}\newline
+
+\part{Bibliography}
+%ACM SIGCHI Style
+\bibliographystyle{dependencies/acm-sigchi}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+{
+\footnotesize %font size of the for the references
+\bibliography{y-bibliography}
+}
+
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%Appendix%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\epigraphhead[400]{
+\centering\textit{}}
+\part{Appendices}
+%
+\begin{appendices}
+
+%\input{8-Appendix}
+%\begin{appendices}
+
+\input{7-publications.tex}
+
+\end{appendices}
+
+\end{document}

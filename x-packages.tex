@@ -1,0 +1,184 @@
+
+
+\usepackage{dependencies/kmd-emthesis}
+\usepackage{dependencies/fn2end} %footnotes script
+\usepackage{dependencies/fn2end_config} %footnotes edit script
+%\usepackage{dependencies/kmd-jmthesis} %Japanese
+\usepackage{graphicx,calc}
+\usepackage{subfigure}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{fancybox}
+\usepackage{amssymb}
+\usepackage{moreverb}
+\usepackage{afterpage}
+\usepackage{cite}
+\usepackage{hyperref}
+%\usepackage{harvard-oikos}
+\usepackage{caption} % caption
+\usepackage{indentfirst}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{framed}
+\usepackage{wrapfig}
+\usepackage{tcolorbox}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{xcolor,colortbl}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{footnote}
+%\usepackage[table,xcdraw]{xcolor}
+ \usepackage{fancyhdr}
+\usepackage{framed}
+\usepackage{sectsty}
+\usepackage{siunitx}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{cleveref}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{epigraph}
+\usepackage{titlesec}
+\usepackage{xspace}
+\usepackage[flushleft]{threeparttable}
+\usepackage[titletoc]{appendix}
+\usepackage{arabtex}
+\usepackage{utf8}
+
+%used for a bib after each chapter                                    
+%\usepackage[sectionbib]{chapterbib}
+%\usepackage{chapterbib}
+
+\usepackage{tocloft}
+\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} % for parts
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % for chapters
+
+\usepackage{forloop}
+\newcounter{loopcntr}
+\newcommand{\rpt}[2][1]{%
+  \forloop{loopcntr}{0}{\value{loopcntr}<#1}{#2}%
+}
+\newcommand{\on}[1][1]{
+  \forloop{loopcntr}{0}{\value{loopcntr}<#1}{&\cellcolor{gray}}
+}
+\newcommand{\off}[1][1]{
+  \forloop{loopcntr}{0}{\value{loopcntr}<#1}{&}
+}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]   
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}   
+\titlespacing*{\chapter}{20pt}{-20pt}{40pt}
+
+\begin{comment}
+%sample of using wrapfigure to generate a text box
+
+\begin{wrapfigure}[4]{r}{0.5\textwidth}
+\tcolorbox
+\normalsize
+\lipsum[1]
+\endtcolorbox
+\end{wrapfigure}
+
+\end{comment}
+  
+%fonts families
+%\usepackage{tgbonum}
+%\usepackage{tgheros}
+
+%\makesavenoteenv{tabular}
+
+\newcommand{\Figure}[1]{\Cref{#1}\ }
+\newcommand{\Table}[1]{\Cref{#1}\ }
+\newcommand{\Section}[1]{\Cref{#1}\ }
+\newcommand{\Listing}[1]{\Cref{#1}\ }
+\newcommand{\Chapter}[1]{\Cref{#1}\ }
+\newcommand{\Part}[1]{\Cref{#1}\ }
+
+\definecolor{darkblue}{rgb}{0,0,0.5}
+
+\newcommand{\updatedtext}[1]{{\color{darkblue}#1}}
+
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+\newcommand{\ProposalKeyword}{Embodied-Driven Design\ }
+\newcommand{\ProposalSubtitle} {\textbf{Embodied-Driven Design}\\a Framework to Configure Body Representation \& Mapping}
+%{Design and Implementation of Presence Toolkit for Embodied Representation \& Interaction in Teleoperated Environments}
+%{Manipulating Body Representation \& Mapping in Teleoperated Environments}
+
+%inline image with text
+\newlength\myheight
+\newlength\mydepth
+\settototalheight\myheight{Xygp}
+\settodepth\mydepth{Xygp}
+\setlength\fboxsep{0pt}
+\newcommand*\inlinegraphics[1]{%
+  \settototalheight\myheight{Xygp}%
+  \settodepth\mydepth{Xygp}%
+  \raisebox{-\mydepth}{\includegraphics[height=\myheight]{#1}}%
+}
+
+%\setmonofont{Consolas} %to be used with XeLaTeX or LuaLaTeX
+\definecolor{bluekeywords}{rgb}{0,0,1}
+\definecolor{greencomments}{rgb}{0,0.5,0}
+\definecolor{redstrings}{rgb}{0.64,0.08,0.08}
+\definecolor{xmlcomments}{rgb}{0.5,0.5,0.5}
+\definecolor{types}{rgb}{0.17,0.57,0.68}
+
+
+\definecolor{shadecolor}{rgb}{0.95,0.95,0.95}
+
+\usepackage{listings}
+\lstset{language=[Sharp]C,
+captionpos=b,
+%numbers=left, %Nummerierung
+%numberstyle=\tiny, % kleine Zeilennummern
+frame=lines, % Oberhalb und unterhalb des Listings ist eine Linie
+showspaces=false,
+showtabs=false,
+breaklines=true,
+showstringspaces=false,
+breakatwhitespace=true,
+escapeinside={(*@}{@*)},
+commentstyle=\color{greencomments},
+morekeywords={partial, var, value, get, set},
+keywordstyle=\color{bluekeywords},
+stringstyle=\color{redstrings},
+basicstyle=\ttfamily\footnotesize,
+}
+
+%change margines for a paragraph
+%\begin{changemargin}{<arg>}{<arg>} 
+%\end{changemargin} 
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\renewcommand{\partname}{}
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1pt \hfill \kern \z@}
+
+%Part page style
+\makeatletter
+\titleformat{\part}[display]
+  {\Huge\scshape\filcenter}
+  {\thepart}
+  {20pt}
+  {\thispagestyle{epigraph}}
+\makeatother
+\setlength\epigraphwidth{1\textwidth}
+
+  
+
+%force to output on left page \cleartoleftpage
+\newcommand*\cleartoleftpage{%
+  \clearpage
+  \ifodd
+  \value{page}
+      \vspace*{\fill}
+    {\centering \textit{\Large{This page has been intentionally left blank}}.\par}
+    \vspace{\fill}
+  \newpage
+  \fi
+}
